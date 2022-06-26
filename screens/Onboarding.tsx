@@ -1,20 +1,21 @@
-import { View, Text, TouchableOpacity, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { height, width } from "../constants/Layout";
+import { height, scale, width } from "../constants/Layout";
+import { onBoarding } from "../assets";
 
 function Onboarding({ navigation }: { navigation: any }) {
   return (
     <View style={{ flex: 1 }}>
       <ImageBackground
-        source={require("../assets/onboarding.jpg")}
-        style={{
-          flex: 1,
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-        }}
-        blurRadius={1}
+        source={onBoarding}
+        style={styles.imgBackground}
         resizeMode="cover"
       >
         <LinearGradient
@@ -28,61 +29,27 @@ function Onboarding({ navigation }: { navigation: any }) {
           ]}
           style={{ flex: 1 }}
         >
-          <View
-            style={{
-              position: "absolute",
-              bottom: height * 0.1,
-              paddingHorizontal: width * 0.02,
-            }}
-          >
-            <Text
-              style={{
-                fontSize: width * 0.06,
-                color: "white",
-              }}
-            >
-              Welcome to NewsYog
-            </Text>
-            <Text
-              style={{
-                fontSize: width * 0.04,
-                color: "white",
-                opacity: 0.7,
-                marginTop: height * 0.01,
-              }}
-            >
+          <View style={styles.main}>
+            <Text style={styles.mainText}>Welcome to NewsYog</Text>
+            <Text style={styles.subText}>
               NewsYog is a news app which focuses on showing news as per users
               location.
             </Text>
             <TouchableOpacity
               onPress={() => navigation.navigate("Maps")}
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: width * 0.01,
-                marginTop: height * 0.06,
-                backgroundColor: "#dc3351",
-                height: height * 0.06,
-              }}
+              style={styles.btn}
             >
               <Text
                 style={{
-                  fontSize: width * 0.05,
-                  fontWeight: "500",
+                  fontSize: scale(18),
+                  fontWeight: "600",
                   color: "white",
                 }}
               >
                 {"Lets Get Started".toUpperCase()}
               </Text>
             </TouchableOpacity>
-            <Text
-              style={{
-                fontSize: width * 0.036,
-                color: "white",
-                alignSelf: "center",
-                marginTop: height * 0.026,
-              }}
-            >
+            <Text style={styles.btnText}>
               Already have an account?{" "}
               <Text
                 style={{
@@ -99,5 +66,48 @@ function Onboarding({ navigation }: { navigation: any }) {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  imgBackground: {
+    flex: 1,
+    position: "absolute",
+    width: "100%",
+    height: "100%",
+  },
+  main: {
+    position: "absolute",
+    bottom: scale(42),
+    paddingHorizontal: scale(16),
+    alignSelf: "center",
+  },
+  btn: {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: scale(8),
+    marginTop: scale(38),
+    backgroundColor: "#dc3351",
+    height: scale(44),
+  },
+  mainText: {
+    fontSize: scale(28),
+    fontWeight: "500",
+    color: "white",
+    textAlign: "center",
+  },
+  btnText: {
+    fontSize: scale(14),
+    color: "white",
+    alignSelf: "center",
+    marginTop: scale(18),
+    opacity: 0.9,
+  },
+  subText: {
+    fontSize: scale(16),
+    color: "white",
+    opacity: 0.7,
+    marginTop: scale(8),
+    textAlign: "center",
+  },
+});
 
 export default Onboarding;

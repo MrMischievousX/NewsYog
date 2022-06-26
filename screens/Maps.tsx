@@ -24,7 +24,7 @@ class Maps extends React.Component<Props, SS, S> {
       loaded: false,
       currentNews: null,
       url: null,
-      loading: false,
+      loading: true,
       coords: {
         latitude: 20.5937,
         longitude: 78.9629,
@@ -42,7 +42,7 @@ class Maps extends React.Component<Props, SS, S> {
       longitudeDelta: 0.3,
     };
     setTimeout(() => {
-      this.mapRef.animateToRegion(coords, 3000);
+      this.mapRef && this.mapRef.animateToRegion(coords, 3000);
       setTimeout(() => {
         this.setState({ loaded: true });
       }, 3000);
@@ -50,25 +50,26 @@ class Maps extends React.Component<Props, SS, S> {
   };
 
   componentDidMount = () => {
-    this.onRegionChange();
+    setTimeout(() => {
+      this.setState({ loading: false }, () => this.onRegionChange());
+    }, 500);
   };
 
   render(): React.ReactNode {
+    if (this.state.loading) return null;
     return (
       <View style={styles.container}>
         <MapView
           provider={PROVIDER_GOOGLE}
-          loadingEnabled
           customMapStyle={mStyle}
           initialRegion={this.state.coords}
-          cacheEnabled
           // onRegionChange={(e) => console.log(e)}
           // onRegionChangeComplete={(e) => console.log(e)}
           ref={(ref) => (this.mapRef = ref)}
-          liteMode
           style={styles.map}
           showsMyLocationButton={true}
           showsUserLocation={true}
+          moveOnMarkerPress={false}
         >
           {this.state.loaded &&
             d.map((item: any, index: any) => {

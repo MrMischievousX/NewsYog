@@ -10,8 +10,12 @@ import {
   Image,
   StatusBar,
 } from "react-native";
-import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
-import { height, width } from "../constants/Layout";
+import {
+  MaterialCommunityIcons,
+  FontAwesome,
+  Ionicons,
+} from "@expo/vector-icons";
+import { height, scale, width } from "../constants/Layout";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -19,15 +23,20 @@ interface Props {
   navigation: any;
   route: any;
 }
-interface SS {}
+interface SS {
+  isPressed: boolean;
+}
 interface S {}
 
 class News extends React.Component<Props, SS, S> {
+  data: any = null;
   constructor(props: any) {
     super(props);
+    this.state = {
+      isPressed: false,
+    };
+    this.data = this.props.route.params.data;
   }
-
-  data = this.props.route.params.data;
 
   // "date": "Tue ,  06 Aug 2019 01 : 38 : 09 +0530",
   // "latitude": "26.901958",
@@ -41,14 +50,18 @@ class News extends React.Component<Props, SS, S> {
 
   render(): React.ReactNode {
     const date = new Date("Tue, 06 Aug 2019 01:38:09 ").toLocaleString();
-    const link = this.data.link.replaceAll(" ", "");
+    const link = this.data.link;
+    // const link =
+    //   "https://www.thehindu.com/news/cities/Delhi/jnu-student-raped-by-cabbie-says-police-refused-to-help-her/article28828625.ece";
 
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.subContainer}>
           <MaterialCommunityIcons
             name="keyboard-backspace"
-            size={width * 0.072}
+            size={scale(24)}
+            activeOpacity={0}
+            style={{ backgroundColor: "transparent" }}
             color="white"
             onPress={() => this.props.navigation.goBack()}
           />
@@ -58,30 +71,34 @@ class News extends React.Component<Props, SS, S> {
             }}
           >
             <Ionicons
-              name="bookmark-outline"
-              size={width * 0.072}
+              name={this.state.isPressed ? "bookmark" : "bookmark-outline"}
+              size={scale(24)}
+              style={{ backgroundColor: "transparent" }}
               color="white"
+              onPress={() =>
+                this.setState({ isPressed: !this.state.isPressed })
+              }
             />
             <Ionicons
               name="share-social-outline"
-              size={width * 0.072}
+              size={scale(24)}
               color="white"
-              style={{ marginLeft: width * 0.03 }}
+              style={{ marginLeft: scale(12) }}
             />
           </View>
         </View>
         <ScrollView
-          style={{ flex: 1, marginTop: height * 0.03 }}
+          style={{ flex: 1, marginTop: scale(24) }}
           bounces={false}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ paddingBottom: height * 0.16 }}
+          contentContainerStyle={{ paddingBottom: scale(82) }}
         >
           <View
             style={{
               flex: 1,
               justifyContent: "center",
               alignItems: "flex-start",
-              width: width * 0.9,
+              width: width - scale(28),
             }}
           >
             <Image
@@ -105,14 +122,16 @@ class News extends React.Component<Props, SS, S> {
         <View style={styles.btnContainer}>
           <LinearGradient
             colors={[
-              "transparent",
-              "rgba(38, 38, 44,0.6)",
-              "rgba(38, 38, 44,0.7)",
+              "rgba(38, 38, 44,0.1)",
+              "rgba(38, 38, 44,0.3)",
               "rgba(38, 38, 44,0.8)",
               "rgba(38, 38, 44,0.9)",
               "rgba(38, 38, 44,1)",
-              "black",
+              "rgba(38, 38, 44, 1)",
+              "rgba(38, 38, 44, 1)",
+              "rgba(38, 38, 44, 1)",
             ]}
+            // locations={[0.1, 0.15, 0.3, 0.4]}
             style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
             <TouchableOpacity
@@ -133,64 +152,66 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#26262C",
     alignItems: "center",
+    // paddingTop: scale(8),
   },
   subContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
-    width: width * 0.9,
+    width: width - scale(28),
   },
   read: {
-    fontSize: width * 0.044,
+    fontSize: scale(16),
     fontWeight: "600",
     color: "white",
   },
   btnContainer: {
     position: "absolute",
-    bottom: height * 0.0,
+    bottom: scale(0),
     width: width,
-    height: height * 0.16,
+    height: scale(82),
     justifyContent: "center",
+    backgroundColor: "transparent",
   },
   title: {
-    fontSize: width * 0.072,
-    marginTop: height * 0.03,
+    fontSize: scale(24),
+    marginTop: scale(24),
     color: "white",
     fontWeight: "600",
   },
   date: {
-    fontSize: width * 0.038,
+    fontSize: scale(13),
     color: "#7A7A7D",
-    marginTop: height * 0.014,
+    marginTop: scale(8),
   },
   summary: {
-    fontSize: width * 0.038,
+    fontSize: scale(13),
     color: "white",
     opacity: 0.7,
     fontWeight: "500",
-    marginTop: height * 0.014,
-    lineHeight: height * 0.028,
+    marginTop: scale(4),
+    lineHeight: scale(22),
   },
   space: {
-    width: width * 0.14,
-    height: height * 0.0062,
-    backgroundColor: "#7A7A7D",
-    marginVertical: height * 0.022,
-    borderRadius: width * 0.01,
+    width: scale(40),
+    height: scale(4),
+    marginVertical: scale(18),
+    borderRadius: scale(16),
     opacity: 0.6,
+    backgroundColor: "#7A7A7D",
   },
   image: {
     width: "100%",
-    height: height * 0.28,
-    borderRadius: width * 0.04,
+    height: scale(200),
+    borderRadius: scale(16),
   },
   btnStyle: {
-    width: width * 0.9,
-    height: height * 0.072,
+    width: width - scale(28),
+    height: scale(48),
+    borderRadius: scale(16),
     backgroundColor: "#653FFE",
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: width * 0.04,
   },
 });
 

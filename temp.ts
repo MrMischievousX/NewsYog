@@ -53,7 +53,8 @@ export const d: any = [
   },
   {
     title: "Two Mexican women molested in Jaipur",
-    summary: "",
+    summary:
+      "Victim wants legal action against police officers ,  accused; probe under way",
     locationNER:
       "Mexican : NORP , the Pink City : GPE , CCTV : ORG , SHO of Vidhayakpuri Police Station : ORG , FIR : ORG , New Delhi : GPE , PTI : ORG",
     link: "https : //www.newsnation.in/cities/jaipur/two-mexican-women-molested-in-jaipur-197837.html",
@@ -78,7 +79,8 @@ export const d: any = [
   {
     title:
       "Rajasthan :  Video of teacher beating student in classroom goes viral",
-    summary: "",
+    summary:
+      "Victim wants legal action against police officers ,  accused; probe under way",
     locationNER:
       "Rajasthans Dausa : LOC , Swami Vivekanand Model School : ORG , Deedwana : GPE , SHO : ORG , Lalsot : ORG , Manisha Sharma : ORG",
     link: "https : //www.newsnation.in/cities/jaipur/rajasthan-video-of-teacher-beating-student-in-classroom-goes-viral-200556.html",
@@ -90,7 +92,8 @@ export const d: any = [
   },
   {
     title: "Fire breaks out in Jaipur shopping complex",
-    summary: "",
+    summary:
+      "Victim wants legal action against police officers ,  accused; probe under way",
     locationNER: "Haldiyon Ka Rasta : FAC",
     link: "https : //www.newsnation.in/cities/jaipur/fire-breaks-out-in-jaipur-shopping-complex-200886.html",
     date: "Sun ,  08 Sep 2019 00 : 00 : 00 +0000",
