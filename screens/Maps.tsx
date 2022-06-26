@@ -18,7 +18,6 @@ interface S {}
 class Maps extends React.Component<Props, SS, S> {
   mapRef: any = null;
   RBSheet: any = null;
-  currentNews: any = null;
   constructor(props: any) {
     super(props);
     this.state = {
@@ -39,8 +38,8 @@ class Maps extends React.Component<Props, SS, S> {
     const coords = {
       latitude: 26.894094,
       longitude: 75.79277,
-      latitudeDelta: 0.5,
-      longitudeDelta: 0.5,
+      latitudeDelta: 0.3,
+      longitudeDelta: 0.3,
     };
     setTimeout(() => {
       this.mapRef.animateToRegion(coords, 3000);
@@ -62,7 +61,11 @@ class Maps extends React.Component<Props, SS, S> {
           loadingEnabled
           customMapStyle={mStyle}
           initialRegion={this.state.coords}
+          cacheEnabled
+          // onRegionChange={(e) => console.log(e)}
+          // onRegionChangeComplete={(e) => console.log(e)}
           ref={(ref) => (this.mapRef = ref)}
+          liteMode
           style={styles.map}
           showsMyLocationButton={true}
           showsUserLocation={true}
@@ -73,7 +76,6 @@ class Maps extends React.Component<Props, SS, S> {
                 <Marker
                   key={index}
                   onPress={() => {
-                    console.log("Pressed");
                     this.props.navigation.navigate("News", { data: item });
                   }}
                   coordinate={{
