@@ -1,5 +1,3 @@
-// In App.js in a new project
-
 import * as React from "react";
 import { Image } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
