@@ -50,7 +50,7 @@ class News extends React.Component<Props, SS, S> {
 
   render(): React.ReactNode {
     const date = new Date("Tue, 06 Aug 2019 01:38:09 ").toLocaleString();
-    const link = this.data.link;
+    const link = this.data.link.replace(/ +/g, "");
     // const link =
     //   "https://www.thehindu.com/news/cities/Delhi/jnu-student-raped-by-cabbie-says-police-refused-to-help-her/article28828625.ece";
 
@@ -207,7 +207,7 @@ const styles = StyleSheet.create({
   btnStyle: {
     width: width - scale(28),
     height: scale(48),
-    borderRadius: scale(16),
+    borderRadius: scale(12),
     backgroundColor: "#653FFE",
     alignSelf: "center",
     alignItems: "center",

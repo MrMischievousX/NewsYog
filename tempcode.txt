@@ -286,35 +286,35 @@
 // //   );
 // // })
 
-
-// return (
-//   <View
-//     style={{
-//       flex: 1,
-//       backgroundColor: "white",
-//       // backgroundColor: "#b92d45",
-//       justifyContent: "center",
-//       alignItems: "center",
-//     }}
-//   >
-//     <Image
-//       source={require("./assets/icon.png")}
-//       style={{
-//         width: width * 0.4,
-//         height: width * 0.4,
-//         borderRadius: width * 0.04,
-//       }}
-//     />
-//     <Text
-//       style={{
-//         fontSize: width * 0.08,
-//         fontWeight: "bold",
-//         color: "#b92d45",
-//         letterSpacing: 0.5,
-//         marginTop: height * 0.02,
-//       }}
-//     >
-//       NewsYog
-//     </Text>
-//   </View>
-// );
+return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "white",
+        // backgroundColor: "#b92d45",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Image
+        source={require("./assets/icon.png")}
+        style={{
+          width: width * 0.4,
+          height: width * 0.4,
+          borderRadius: width * 0.02,
+        }}
+      />
+      <Text
+        style={{
+          fontSize: width * 0.08,
+          fontWeight: "bold",
+          color: "#2c2c2c",
+          letterSpacing: 0.5,
+          marginTop: height * 0.02,
+        }}
+      >
+        NewsYog
+      </Text>
+      <StatusBar hidden />
+    </View>
+  );

@@ -20,12 +20,21 @@ function Onboarding({ navigation }: { navigation: any }) {
       >
         <LinearGradient
           colors={[
-            "rgba(220, 51, 81,0.6)",
-            "rgba(220, 51, 81,0.4)",
-            "rgba(220, 51, 81,0.2)",
-            "rgba(0, 0, 0,0.6)",
-            "rgba(0, 0, 0,0.8)",
-            "rgba(0, 0, 0,1)",
+            // "rgba(220, 51, 81,0.6)",
+            // "rgba(220, 51, 81,0.4)",
+            // "rgba(220, 51, 81,0.2)",
+            // "rgba(0, 0, 0,0.6)",
+            // "rgba(0, 0, 0,0.8)",
+            // "rgba(0, 0, 0,1)",
+            // "rgba(44, 44, 44,0.6)",
+            // "rgba(44, 44, 44,0.4)",
+            // "rgba(44, 44, 44,0.2)",
+            // "rgba(44, 44, 44,0.1)",
+            "rgba(128, 128, 128,0.3)",
+            "rgba(128, 128, 128,0.2)",
+            "rgba(128, 128, 128,0.1)",
+            "rgba(128, 128, 128,0.2)",
+            "rgba(128, 128, 128,0.3)",
           ]}
           style={{ flex: 1 }}
         >
@@ -43,6 +52,7 @@ function Onboarding({ navigation }: { navigation: any }) {
                 style={{
                   fontSize: scale(18),
                   fontWeight: "600",
+                  backgroundColor: "transparent",
                   color: "white",
                 }}
               >
@@ -85,8 +95,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: scale(8),
     marginTop: scale(38),
-    backgroundColor: "#dc3351",
+    backgroundColor: "rgba(153, 153, 153,0.4)",
+    // backgroundColor: "rgba(153, 153, 153,0.4)",
+    // backgroundColor: "#dc3351",
     height: scale(44),
+    shadowColor: "white",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 14,
+    elevation: 20,
   },
   mainText: {
     fontSize: scale(28),

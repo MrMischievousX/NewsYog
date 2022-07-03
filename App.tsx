@@ -1,12 +1,15 @@
 import * as React from "react";
-import { Image } from "react-native";
+import { Image, Platform } from "react-native";
 import * as SplashScreen from "expo-splash-screen";
 import * as Font from "expo-font";
 import { Asset } from "expo-asset";
 import { enableFreeze } from "react-native-screens";
 import { onBoarding } from "./assets";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import { Maps, Onboarding, News } from "./screens";
 import { StatusBar } from "react-native";
 
@@ -26,7 +29,7 @@ function cacheFonts(fonts: any[]) {
   return fonts.map((font) => Font.loadAsync(font));
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 
 function App() {
   const _loadAssetsAsync = async () => {
@@ -44,10 +47,21 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
         <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Maps" component={Maps} />
-        <Stack.Group screenOptions={{ presentation: "modal" }}>
+        <Stack.Group
+          screenOptions={{
+            presentation: "modal",
+            gestureEnabled: true,
+            ...(Platform.OS == "android" &&
+              TransitionPresets.ModalPresentationIOS),
+          }}
+        >
           <Stack.Screen name="News" component={News} />
         </Stack.Group>
       </Stack.Navigator>
